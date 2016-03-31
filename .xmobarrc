@@ -1,0 +1,30 @@
+Config { font = "xft:Source Code Pro:size=10:antialias=true"
+       , bgColor = "#073642"
+       , fgColor = "#657b83"
+       , overrideRedirect = False
+       , position = Top
+       , persistent = True
+       , hideOnStart = False
+       , allDesktops = True
+       , commands = [ Run Date "%a %b %_d %l:%M" "date" 10
+                    , Run StdinReader
+                    , Run Com "/home/manuel/.xmonad/newmail.sh" [] "mailstatus" 600
+                    , Run Battery      [ "--template" , "Batt: <acstatus>"
+                                       , "--Low"      , "10"        -- units: %
+                                       , "--High"     , "80"        -- units: %
+                                       , "--low"      , "#dc322f"
+                                       , "--normal"   , "#859900"
+                                       , "--high"     , "#2aa198"
+                                       , "--"   -- battery specific options
+                                                -- discharging status
+                                                , "-o", "<left>% (<timeleft>)"
+                                                -- AC "on" status
+                                                , "-O", "<fc=#859900>Charging...</fc>"
+                                                -- charged status
+                                                , "-i", "<fc=#2aa198>Full</fc>"
+                                       ] 50
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader%}{%mailstatus%| %battery% | <fc=#b58900>%date%</fc>"
+       }
