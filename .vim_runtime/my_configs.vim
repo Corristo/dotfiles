@@ -55,6 +55,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_include_dirs = ['../include','include','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtConcurrent' ,'/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtCore','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtTest','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtGui','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtQml','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtQuick','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtWidgets']
+let g:syntastic_cpp_compiler_options = "-std=c++14 -Wall -Wextra -Wpedantic -fPIC"
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufEnter *.m compiler mlint
 

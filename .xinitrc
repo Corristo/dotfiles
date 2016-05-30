@@ -42,4 +42,5 @@ xscreensaver -no-splash &
 xsetroot -cursor_name left_ptr &
 xss-lock -- xscreensaver-command -lock &
 redshift &
+autocutsel &
 exec xmonad
