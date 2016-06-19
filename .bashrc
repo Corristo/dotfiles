@@ -18,11 +18,6 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM=1
 source /usr/share/git/completion/git-completion.bash
 source /usr/share/git/completion/git-prompt.sh
-source /home/manuel/.mutt/MuttComplete.bash
-
-alias ls='ls --color=auto'
+source /home/manuel/.doComplete.bash
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 ls='ls --color=auto'
-truecrypt='truecrypt --text'
-alias mutt=muttChangeFolder
-
