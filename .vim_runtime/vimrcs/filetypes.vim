@@ -1,13 +1,4 @@
 """"""""""""""""""""""""""""""
-" => Mail section
-""""""""""""""""""""""""""""""
-autocmd BufNewFile,BufRead /tmp/mutt-* set filetype=mail
-au FileType mail set tw=72 autoindent expandtab formatoptions=tcqnaw
-au FileType mail set list listchars=tab:»·,trail:·
-au FileType mail set comments=nb:>
-au FileType mail vmap D dO[...]^[
-""""""""""""""""""""""""""""""
-" => Python section
 """"""""""""""""""""""""""""""
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self

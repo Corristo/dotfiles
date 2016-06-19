@@ -37,14 +37,14 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+au FileType cpp nnoremap K :YcmCompleter GetDocQuick<CR>
+au FileType cpp nnoremap gi :YcmCompleter GoToInclude<CR>
+au FileType cpp nnoremap T :YcmCompleter GetType<CR>
+au FileType cpp nnoremap <leader>k <C-w>o
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -55,59 +55,29 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_include_dirs = ['../include','include','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtConcurrent' ,'/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtCore','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtTest','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtGui','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtQml','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtQuick','/home/manuel/Programme/Qt5.5.1/5.5/gcc_64/include/QtWidgets']
-let g:syntastic_cpp_compiler_options = "-std=c++14 -Wall -Wextra -Wpedantic -fPIC"
+let g:syntastic_cpp_checkers=['']
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufEnter *.m compiler mlint
 
 set background=dark
 colorscheme solarized
 
-function! NERDTreeOpenInCurDir()
-    exec "silent! lcd %:p:h"
-    if &filetype == 'mail'
-    else
-        let curDir = getcwd()
-        exec ":NERDTree ".fnameescape(curDir)
-        unlet curDir
-    endif
-endfunction
-
-
 function! s:goyo_enter()
     set noshowmode
     set noshowcmd
-    exec ":NERDTreeToggle"
  endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
-
-autocmd BufWinEnter * :call NERDTreeOpenInCurDir()
-let g:NERDTreeWinSize = 20
-function! CheckLeftBuffers()
-    if tabpagenr('$') == 1
-        let i = 1
-        while i <= winnr('$')
-            if getbufvar(winbufnr(i), '&buftype') == 'help' ||
-                        \ getbufvar(winbufnr(i), '&buftype') == 'quickfix' ||
-                        \ exists('t:NERDTreeBufName') &&
-                        \   bufname(winbufnr(i)) == t:NERDTreeBufName ||
-                        \ bufname(winbufnr(i)) == '__Tag_List__'
-                let i += 1
-            else
-                break
-            endif
-        endwhile
-        if i == winnr('$') + 1
-            qall
-        endif
-        unlet i
-    endif
-endfunction
-autocmd BufEnter * call CheckLeftBuffers()
 
 let NERDTreeIgnore=['\.o$', '\.pdf$', '\.wmv$', '\.mp4$', '\.jpg$', '\.png$', '\~$', '\.gz$', '\.bz$', '\.mat$', '\.zip$', '\.rar$', '\.avi$', '\.JPG', '\.djvu$', '\.epub$', '\.mobi$', '\.exe$', '\.doc$', '\.odt$', '\.docx$']
 
 map <F7> :w !xclip <CR><CR>
 vmap <F7> "*y
 map <S-F7> :r!xclip -o <CR>
+let g:ycm_global_ycm_extra_conf = "~/.vim_runtime/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_always_populate_location_list = 1
+let g:ycm_use_ultisnips_completer = 0
+set exrc
+set secure
+
